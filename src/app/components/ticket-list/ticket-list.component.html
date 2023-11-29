@@ -1,1 +1,37 @@
-<p>ticket-list works!</p>
+<div class="container mt-4">
+  <h2>Ticket List</h2>
+
+  <div class="form-group">
+    <label for="userId">User ID:</label>
+    <input type="text" class="form-control" id="userId" [(ngModel)]="userId" />
+  </div>
+
+  <div class="form-check mb-3">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="showFavorites"
+      [(ngModel)]="showFavorites"
+    />
+    <label class="form-check-label" for="showFavorites">Show Favorites</label>
+  </div>
+
+  <div class="mb-3">
+    <button class="btn btn-primary" [routerLink]="['/create-ticket']">
+      Create New Ticket
+    </button>
+  </div>
+
+  <div class="list-group">
+    <div
+      *ngFor="let ticket of filteredTickets"
+      class="list-group-item d-flex justify-content-between align-items-center"
+    >
+      <div class="col-8">
+        <a [routerLink]="['/ticket-details', ticket.id]">
+          {{ ticket.title }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,35 @@
-<p>ticket-details works!</p>
+<div class="container mt-4" *ngIf="ticket; else loading">
+  <h2>Ticket Details</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">{{ ticket?.title }}</h2>
+      <p class="card-text">
+        <strong>Ticket ID:</strong> {{ ticket?.ticketId }}
+      </p>
+      <p class="card-text">
+        <strong>Description:</strong> {{ ticket?.description }}
+      </p>
+      <p class="card-text">
+        <strong>Opened By:</strong> {{ ticket?.openedBy }}
+      </p>
+      <p class="card-text">
+        <strong>Created Date:</strong>
+        {{ ticket?.createdDate | date : "medium" }}
+      </p>
+
+      <div class="mt-3">
+        <button class="btn btn-primary" (click)="goBack()">
+          Back to Ticket List
+        </button>
+        <button class="btn btn-success ms-2" (click)="goToResolveTicket()">
+          Add Resolution
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>
