@@ -1,1 +1,22 @@
-<p>ticket-list works!</p>
+<div class="container mt-4">
+  <h2>Ticket List</h2>
+
+  <div class="mb-3">
+    <button class="btn btn-primary" [routerLink]="['/create-ticket']">
+      Create New Ticket
+    </button>
+  </div>
+
+  <div class="list-group">
+    <div
+      *ngFor="let ticket of tickets"
+      class="list-group-item d-flex justify-content-between align-items-center"
+    >
+      <div class="col-8">
+        <a [routerLink]="['/ticket-details', ticket.id]">
+          {{ ticket.title }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

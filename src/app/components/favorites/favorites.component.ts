@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Ticket } from 'src/app/models/ticket';
 import { TicketService } from 'src/app/services/ticket.service';
 
 @Component({
@@ -6,12 +7,16 @@ import { TicketService } from 'src/app/services/ticket.service';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css']
 })
-export class FavoritesComponent {
-    favoriteTickets: any[] = [];
+export class FavoritesComponent implements OnInit {
+    favoriteTickets: Ticket[] = [];
 
     constructor(private ticketService: TicketService) {}
 
     ngOnInit(): void {
-      this.favoriteTickets = this.ticketService.getFavoriteTickets();
+      this.ticketService.getFavoriteTickets().subscribe(
+        (tickets: Ticket[]) => {
+          this.favoriteTickets = tickets;
+        }
+      );
     }
 }
