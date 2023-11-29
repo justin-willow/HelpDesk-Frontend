@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <h2>Resolve Ticket</h2>
+
+  <form>
+    <div class="mb-3">
+      <label for="resolvedByName" class="form-label">Resolved By:</label>
+      <input
+        type="text"
+        id="resolvedByName"
+        name="resolvedByName"
+        class="form-control"
+        [(ngModel)]="resolvedByName"
+        placeholder="Enter your name"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="resolution" class="form-label">Resolution:</label>
+      <textarea
+        id="resolution"
+        name="resolution"
+        class="form-control"
+        [(ngModel)]="resolution"
+        placeholder="Enter resolution details"
+      ></textarea>
+    </div>
+
+    <button class="btn btn-primary" (click)="goBack()">
+      Back to Ticket List
+    </button>
+    <button type="button" class="btn btn-success ms-2" (click)="closeTicket()">
+      Close Ticket
+    </button>
+  </form>
+</div>
