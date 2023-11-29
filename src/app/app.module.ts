@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TicketListComponent } from './components/ticket-list/ticket-list.component';
 import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 
 @NgModule({
@@ -14,12 +15,13 @@ import { TicketDetailsComponent } from './components/ticket-details/ticket-detai
     AppComponent,
     TicketListComponent,
     TicketDetailsComponent,
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClient
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
