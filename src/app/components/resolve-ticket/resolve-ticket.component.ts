@@ -22,7 +22,7 @@ export class ResolveTicketComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.ticketId = +params.get('id')!;
-      this.ticketService.getTicketById(this.ticketId).subscribe((ticket) => {
+      this.ticketService.getTicketsById(this.ticketId).subscribe((ticket) => {
         this.ticket = ticket;
       });
     });

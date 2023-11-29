@@ -8,4 +8,5 @@ export interface Ticket {
   createdDate: Date;
   updatedDate: Date;
   isActive: boolean;
+  favorite: boolean;
 }

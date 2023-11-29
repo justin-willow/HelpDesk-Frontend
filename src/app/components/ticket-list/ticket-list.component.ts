@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TicketService } from 'src/app/services/ticket.service';
-import { Ticket } from 'src/app/ticket';
+import { Ticket } from 'src/app/models/ticket';
 
 @Component({
   selector: 'app-ticket-list',
@@ -16,3 +16,4 @@ export class TicketListComponent {
     this.ticketService.getTickets()
       .subscribe((tickets: any[]) => this.tickets = tickets);
   }
+}

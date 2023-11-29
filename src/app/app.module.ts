@@ -20,7 +20,7 @@ import { ResolveTicketComponent } from './components/resolve-ticket/resolve-tick
     ResolveTicketComponent,
     FavoritesComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, Module],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
