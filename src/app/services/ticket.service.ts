@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { Ticket } from '../ticket';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +12,20 @@ export class TicketService {
 
   constructor(private client: HttpClient) {}
 
-  getTickets(): Observable<any[]> {
-    return this.client.get<any[]>(`${this.apiUrl}/api/ticket`);
+  getTickets(): Observable<Ticket[]> {
+    return this.client.get<Ticket[]>(`${this.apiUrl}/tickets`);
   }
 
-  getTicketById(id: number): Observable<any> {
-    return this.client.get<any>(`${this.apiUrl}/api/ticket/${id}`);
+  getTicketsById(id: number): Observable<Ticket> {
+    return this.client.get<Ticket>(`${this.apiUrl}/tickets/${id}`);
+  }
+
+  getFavoriteTickets(): Observable<Ticket[]> {
+    return this.client.get<Ticket[]>(`${this.apiUrl}/tickets/favorites`);
+  }
+
+  toggleFavorite(id:number): Observable<any> {
+    return this.client.patch(`${this.apiUrl}/tickets/${id}/toggle-favorites`, null);
   }
 
   createTicket(ticket: any): Observable<any> {
@@ -32,17 +41,5 @@ export class TicketService {
       `${this.apiUrl}/api/ticket/${ticketId}`,
       ticketUpdateDto
     );
-  }
-
-  addFavorite(id: number): Observable<any> {
-    return this.client.post<any>(`${this.apiUrl}/api/favorites`, { id });
-  }
-
-  deleteFavorite(id: number): Observable<any> {
-    return this.client.delete<any>(`${this.apiUrl}/api/favorites/${id}`);
-  }
-
-  getFavoritesByUserId(id: number): Observable<any[]> {
-    return this.client.get<any[]>(`${this.apiUrl}/api/favorites/${id}`);
   }
 }

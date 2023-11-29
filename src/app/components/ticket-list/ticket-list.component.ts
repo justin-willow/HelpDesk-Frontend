@@ -1,34 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TicketService } from 'src/app/services/ticket.service';
-import { Router } from '@angular/router';
+import { Ticket } from 'src/app/ticket';
 
 @Component({
   selector: 'app-ticket-list',
   templateUrl: './ticket-list.component.html',
-  styleUrls: ['./ticket-list.component.css'],
+  styleUrls: ['./ticket-list.component.css']
 })
-export class TicketListComponent implements OnInit {
-  tickets: any[] = [];
-  filteredTickets: any[] = [];
-  showFavorites: boolean = false;
-  userId: number = 0;
+export class TicketListComponent {
+  constructor(private ticketService: TicketService) {}
 
-  constructor(private ticketService: TicketService, private router: Router) {}
+  tickets:Ticket[] = [];
 
-  ngOnInit(): void {
-    this.loadTickets();
+  ngOnInit(){
+    this.ticketService.getTickets()
+      .subscribe((tickets: any[]) => this.tickets = tickets);
   }
-
-  loadTickets(): void {
-    this.ticketService.getTickets().subscribe((tickets) => {
-      this.tickets = tickets;
-      this.applyFilter();
-    });
-  }
-
-  applyFilter(): void {
-    this.filteredTickets = this.showFavorites
-      ? this.tickets.filter((ticket) => ticket.isFavorite)
-      : this.tickets;
-  }
-}

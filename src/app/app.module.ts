@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { TicketListComponent } from './components/ticket-list/ticket-list.component';
 import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
 import { CreateTicketComponent } from './components/create-ticket/create-ticket.component';
-import { ResolveTicketComponent } from './components/resolve-ticket/resolve-ticket.component';
+import { ResolveTicketComponent } from './components/resolve-ticket/resolve-ticket.component';import { FavoritesComponent } from './components/favorites/favorites.component';
+
 
 @NgModule({
   declarations: [
@@ -17,8 +18,9 @@ import { ResolveTicketComponent } from './components/resolve-ticket/resolve-tick
     TicketDetailsComponent,
     CreateTicketComponent,
     ResolveTicketComponent,
+    FavoritesComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, Module],
   providers: [],
   bootstrap: [AppComponent],
 })
