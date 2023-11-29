@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Ticket } from '../ticket';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
-  //needs an api 
-  private apiUrl = '';
+  constructor(private client: HttpClient) {}
+  
+  apiUrl:string ='';
 
-  constructor(private client: HttpClient) { }
-
-  getTickets(): Observable<any[]> {
-    return this.client.get<any[]>(this.apiUrl);
+  getTickets(): Observable<Ticket[]> {
+    return this.client.get<Ticket[]>(`${this.apiUrl}/tickets`);
   }
 
-  getTicket(id:number): Observable<any> {
-    return this.client.get<any>(`${this.apiUrl}/${id}`);
+  getTicketsById(id: number): Observable<Ticket> {
+    return this.client.get<Ticket>(`${this.apiUrl}/tickets/${id}`);
   }
 
-  createTicket(ticket: any): Observable<any> {
-    return this.client.post<any>(this.apiUrl, ticket);
+  getFavoriteTickets(): Observable<Ticket[]> {
+    return this.client.get<Ticket[]>(`${this.apiUrl}/tickets/favorites`);
+  }
+
+  toggleFavorite(id:number): Observable<any> {
+    return this.client.patch(`${this.apiUrl}/tickets/${id}/toggle-favorites`, null);
   }
 }
